@@ -1,0 +1,21 @@
+# Analizando os canais
+# Tons de Cinza
+# Limiares
+# Threshoud Adaptativo
+# Threshoud  Otsu
+# Blur (Desfoco)
+
+# Transformações morfológicas
+# Erosão
+# Dilatação
+# Abertura
+# Fechamento
+# Gradiente Morfológico
+# Cartola
+# Bordas de Canny
+# AproxiPoly
+# Extração de texto
+
+
+
+# Threshoud Gaussiano
