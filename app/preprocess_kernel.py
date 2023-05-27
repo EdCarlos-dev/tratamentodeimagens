@@ -1,4 +1,9 @@
 from numba import jit
+import os    
+import pandas as pd   
+import matplotlib.pyplot as plt   
+import numpy as np
+import matplotlib.image as image 
 
 @jit(nopython = True)
 
