@@ -5,11 +5,18 @@
 # Threshoud  Otsu
 # Blur (Desfoco)
 
-# Transformações morfológicas
+
 # Erosão
+
+
 # Dilatação
+
 # Abertura
+
 # Fechamento
+
+
+
 # Gradiente Morfológico
 # Cartola
 # Bordas de Canny
@@ -17,5 +24,5 @@
 # Extração de texto
 
 
-
+# Transformações morfológicas
 # Threshoud Gaussiano
