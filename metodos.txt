@@ -4,12 +4,11 @@
 # Threshoud Adaptativo
 # Threshoud  Otsu
 # Blur (Desfoco)
-
-
 # Erosão
 
 
 # Dilatação
+
 
 # Abertura
 
