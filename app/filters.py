@@ -103,7 +103,7 @@ class Filters:
         return res
 
 
-    def histogram_weight(lista):
+    def histogram_weight(self, lista):
         
         # Set minimum value to infinity
         final_min = np.inf
@@ -135,21 +135,15 @@ class Filters:
         return thresh
 
 
-    def otsu(imagem):
-        lista = plt.hist(imagem.ravel(),256,[0,256])
+    def otsu(self, image_gray):
+        lista = plt.hist(image_gray.ravel(),256,[0,256])
         plt.clf()
-        limiar_o = histogram_weight(lista)
-        return image_threshold(imagem , limiar_o)
+        limiar_o = self.histogram_weight(lista)
+        return self.image_threshold(image_gray , limiar_o)
 
 
 
-
-
-
-
-
-
-    def erode_kernel(kernel,imagem, x=0, y=0):
+    def erode_kernel(self, kernel,imagem, x=0, y=0):
         '''
         dado um kernel
         calcula a média dos valores dos pixels e retorna o valor  
