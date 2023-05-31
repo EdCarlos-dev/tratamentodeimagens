@@ -4,14 +4,16 @@ import cv2
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import numpy as np
-from numba import jit
+import taichi as ti
 
-#@jit(nopython = True)
+# ti.init()
+
 class Filters:
-
-    def __init__(self, path):
-        self.image = cv2.imread(path)
+    
+    def __init__(self, image):
+        self.image = image
         
+    
     
     def image_to_gray(self, image):
         image_gray = np.zeros((len(image), len(image[0])),dtype=np.uint8)
@@ -38,6 +40,7 @@ class Filters:
                     
         return input_limiar
 
+    
     def zero_box(self, image, kernel=3):
 
         # lado =  7  kernel
@@ -48,7 +51,7 @@ class Filters:
 
         return mask_zeros
 
-  
+    
     def out_box_zero(self, image_in_box, kernel=3):
         
         var = int((kernel - 1) / 2)
@@ -57,7 +60,7 @@ class Filters:
         return image_out_box
 
 
-   
+    
     def medias_kernel(self, kernel, image_gray, x=0, y=0):
         '''
         dado um kernel
@@ -80,7 +83,7 @@ class Filters:
         return result
     
 
-
+    
     def threshoud_adapt(self, image_gray, kernel, constante_c):
 
         input_thresh = self.zero_box(image_gray, kernel)
@@ -142,11 +145,27 @@ class Filters:
         return self.image_threshold(image_gray , limiar_o)
 
 
+    def blur_image(self, image_gray, kernel):
+        
+        input_blur = self.zero_box(image_gray, kernel)
+        matriz_suporte = np.zeros((len(input_blur), len(input_blur[0])),dtype=np.uint8)
+        borda = int((kernel-1)/2) 
 
-    def erode_kernel(self, kernel,imagem, x=0, y=0):
+        for i in range(len(input_blur)): #linhas 
+            for j in range(len(input_blur[0])): #colunas
+                
+                if (i >= borda and i < (len(input_blur) -borda))  and ( j >= borda and j < len(input_blur[0]) -borda):
+                    media = self.medias_kernel(kernel,input_blur,i,j)
+                    matriz_suporte[i][j] = media
+
+        res = self.out_box_zero(matriz_suporte, kernel)
+        
+        return res
+
+
+    def ver_white(self, kernel,imagem, x=0, y=0):
         '''
-        dado um kernel
-        calcula a média dos valores dos pixels e retorna o valor  
+         
         '''
         var = int((kernel-1)/2)
         x = x-var
@@ -166,4 +185,69 @@ class Filters:
 
         else:
             return 0
+
+
+
+    def erode_image(self, image_gray, kernel):
+    
+        image_threshold = self.otsu(image_gray)
+        input_erode = self.zero_box(image_threshold, kernel)
+
+        matriz_suporte = np.zeros((len(input_erode), len(input_erode[0])),dtype=np.uint8)
+        borda = int((kernel-1)/2) 
+
+        for i in range(len(input_erode)): #linhas 
+            for j in range(len(input_erode[0])): #colunas
+                
+                if (i >= borda and i < (len(input_erode) -borda))  and ( j >= borda and j < len(input_erode[0]) -borda):
+                    erode = self.ver_white(kernel,input_erode, i,j)
+                    matriz_suporte[i][j] = erode
+
+        res = self.out_box_zero(matriz_suporte, kernel)
+        
+        return res
+
+
+    def ver_black(self, kernel,imagem, x=0, y=0):
+        '''
+            
+        '''
+        var = int((kernel-1)/2)
+        x = x-var
+        y = y-var
+        white = 0
+        black = 0
+
+        for i in range(x, x + kernel):
+            for j in range (y, y + kernel):
+                if imagem[i][j] == 0:
+                    black += 1
+                else:
+                    white += 1
+                
+        if black == kernel*kernel:
+            return 0
+
+        else:
+            return 255
+
+
+    def dilat_image(self, image_gray, kernel):
+    
+        image_threshold = self.otsu(image_gray)
+        input_erode = self.zero_box(image_threshold, kernel)
+
+        matriz_suporte = np.zeros((len(input_erode), len(input_erode[0])),dtype=np.uint8)
+        borda = int((kernel-1)/2) 
+
+        for i in range(len(input_erode)): #linhas 
+            for j in range(len(input_erode[0])): #colunas
+                
+                if (i >= borda and i < (len(input_erode) -borda))  and ( j >= borda and j < len(input_erode[0]) -borda):
+                    erode = self.ver_black(kernel,input_erode, i,j)
+                    matriz_suporte[i][j] = erode
+
+        res = self.out_box_zero(matriz_suporte, kernel)
+        
+        return res
         
