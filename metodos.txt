@@ -5,20 +5,16 @@
 # Threshoud  Otsu
 # Blur (Desfoco)
 # Erosão
-
-
 # Dilatação
 
 
 # Abertura
-
 # Fechamento
 
 
 
 # Gradiente Morfológico
 # Cartola
-# Bordas de Canny
 # AproxiPoly
 # Extração de texto
 
