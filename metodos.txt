@@ -6,8 +6,6 @@
 # Blur (Desfoco)
 # Erosão
 # Dilatação
-
-
 # Abertura
 # Fechamento
 
