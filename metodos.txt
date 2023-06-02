@@ -10,12 +10,11 @@
 # Fechamento
 
 
+# Transformações morfológicas
 
+
+# Extração de texto
 # Gradiente Morfológico
 # Cartola
 # AproxiPoly
-# Extração de texto
-
-
-# Transformações morfológicas
 # Threshoud Gaussiano
