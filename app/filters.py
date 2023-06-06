@@ -11,16 +11,17 @@ import taichi as ti
 class Filters:
     
     def __init__(self, image):
-        self.image = image
-        
-    
-    
-    def image_to_gray(self, image):
-        image_gray = np.zeros((len(image), len(image[0])),dtype=np.uint8)
 
-        for i in range(len(image)):
-            for j in range(len(image[0])):
-                image_gray[i][j] = (int( image[i][j][0] )+ int(image[i][j][1] )+ int(image[i][j][2] ) )/ len(image[0][0])
+        self.image = image
+        self.gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY) 
+    
+    @property
+    def image_to_gray(self):
+        image_gray = np.zeros((len(self.image ), len(self.image [0])),dtype=np.uint8)
+
+        for i in range(len(self.image )):
+            for j in range(len(self.image [0])):
+                image_gray[i][j] = (int( self.image [i][j][0] )+ int(self.image [i][j][1] )+ int(self.image [i][j][2] ) )/ len(self.image [0][0])
         
         return image_gray
 
