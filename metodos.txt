@@ -9,12 +9,14 @@
 # Abertura
 # Fechamento
 
+# Gradiente Morfológico
+
 
 # Transformações morfológicas
 
 
 # Extração de texto
-# Gradiente Morfológico
+
 # Cartola
 # AproxiPoly
 # Threshoud Gaussiano
