@@ -8,15 +8,11 @@
 # Dilatação
 # Abertura
 # Fechamento
-
 # Gradiente Morfológico
 
 
 # Transformações morfológicas
-
-
 # Extração de texto
-
 # Cartola
 # AproxiPoly
 # Threshoud Gaussiano
