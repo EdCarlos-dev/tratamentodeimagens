@@ -9,10 +9,10 @@
 # Abertura
 # Fechamento
 # Gradiente Morfológico
-
-
-# Transformações morfológicas
-# Extração de texto
 # Cartola
+#Chapeu Preto
+
 # AproxiPoly
 # Threshoud Gaussiano
+# Transformações morfológicas
+# Extração de texto
